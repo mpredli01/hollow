@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        }
+    // dependencies {
+        // classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+        // }
+    }
+
+plugins {
+    id 'com.gradle.build-scan' version '1.4'
+    id 'java'
+    }
+
+buildScan {
+    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+    licenseAgree = 'yes'
+    }
+
+task init() {
+    println()
+    println 'Demo Application'
+    println 'Netflix Introduces Hollow'
+    println new Date()
+    println()
+    }
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+// mainClassName = 'org.redlich.hollow.producer.Producer'
+mainClassName = 'org.redlich.hollow.consumer.Consumer'
+// mainClassName = 'org.redlich.hollow.consumer.api.APIGenerator'
+
+jar {
+    baseName = 'hollow'
+    version =  '1.0.0'
+    }
+
+repositories {
+    mavenCentral()
+    }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile group: 'com.netflix.hollow', name: 'hollow', version: '2.0.5'
+    compile group: 'com.netflix.hollow', name: 'hollow-diff-ui', version: '2.0.5'
+    compile group: 'commons-io', name: 'commons-io', version: '2.5'
+    testCompile("junit:junit:4.12")
+    }
